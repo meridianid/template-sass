@@ -1,53 +1,122 @@
+// TEMP Variable declarations
+$list-style: none;
+$base-font-size: 16px;
+
 *,
 *::after,
 *::before {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+
+  // Enable for debugging purpose
+  // outline: 1px solid red;
+
 }
 
-input,
-select,
-textarea,
-button {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+/* Document */
+html {
+  // Prevent adjustments of font size after orientation changes in iOS.
+  -webkit-text-size-adjust: 100%;
+  // Remove gray overlay on links for iOS.
+  -webkit-tap-highlight-color: transparent;
+  font-size: $base-font-size;
 }
 
 body {
+  position: relative;
+  margin: 0;
   font-family: $font-primary;
-  font-size: rem(16px);
-  color: $dark-alpha-80;
+  color: $dark-alpha-70;
   background-color: $light-hex-100;
 }
 
+// Headings
+// For now it's enough with the (*) selector
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin-top: 0;
+//   margin-bottom: 0;
+// }
+
+// Render the `main` element consistently in IE.
+main {
+  display: block;
+}
+
+p,
+table,
+blockquote,
+address,
+pre,
+iframe,
+form,
+figure,
+dl {
+  margin: 0;
+}
+
+// Remove the gray background on active links in IE 10.
 a {
-  color: $brand-primary-200;
+  background-color: transparent;
   text-decoration: none;
+  color: $brand-primary-200;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: $list-style;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+  list-style-type: lower-alpha;
 }
 
 b,
 strong {
-  font-weight: 700;
+  font-weight: $bold;
 }
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+ b,
+ strong {
+     font-weight: bolder;
+ }
 
 // Horizontal lines
-//
-// TODO-MDO: Remove `.rule` from everywhere and replace with `<hr>`s
-hr,
-.rule {
+
+hr {
+   // Add the correct box sizing in Firefox.
+  box-sizing: content-box;
   height: 0;
-  margin: 15px 0;
+
   overflow: hidden;
   background: transparent;
-  border: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 1px solid $dark-alpha-10;
-  @include clearfix();
+  margin: 0;
+  clear: both;
 }
 
-//
 // Remove most spacing between table cells.
-//
-
 table {
   border-spacing: 0;
   border-collapse: collapse;
@@ -58,15 +127,12 @@ th {
   padding: 0;
 }
 
-button {
-  cursor: pointer;
-  // Remove border radius added by Chroma macOS
-  border-radius: 0;
+dd {
+  margin-left: 0;
 }
 
 details {
   summary { cursor: pointer; }
-
   &:not([open]) {
     // Set details content hidden by default for browsers that don't do this
     > *:not(summary) { display: none !important; }
@@ -81,3 +147,58 @@ select:-moz-focusring {
 // option:not(:checked) {
 //   color: black; /* prevent <option>s from becoming transparent as well */
 // }
+
+/**
+ * Fix placeholder font properties inheritance.
+ */
+ ::-webkit-input-placeholder {
+  font: inherit;
+}
+:-ms-input-placeholder {
+  font: inherit;
+}
+::-ms-input-placeholder {
+  font: inherit;
+}
+::placeholder {
+  font: inherit;
+}
+/**
+* Clickable labels
+*/
+label[for] {
+  cursor: pointer;
+}
+
+// Corrent font-size accross browsers
+small {
+  font-size: 80%;
+}
+
+// Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+
+/* MISC
+   ========================================================================== */
+
+// Add the correct display in IE 10+.
+template {
+  display: none;
+}
+
+// Add the correct display in IE 10.
+[hidden] {
+  display: none;
+}
